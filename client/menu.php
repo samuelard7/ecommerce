@@ -29,7 +29,7 @@
         </div>
 
         <div class="ml-4">
-            <a href="view_cart.php">View Cart</a>
+            <a href="#">View Cart</a>
         </div>
 
         <div class="ml-4">

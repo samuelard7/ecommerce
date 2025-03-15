@@ -28,33 +28,32 @@ include 'menu.php';
 include_once '../shared/connection.php';
 
 
-$local_cart=$_SESSION['cart'];
+$local_cart = $_SESSION['cart'];
 
-$res=implode(",",$local_cart);
+$res = implode(",", $local_cart);
 
-$cmd="select * from products where pid in ($res)";
+$cmd = "select * from products where pid in ($res)";
 
-$sql_obj=mysqli_query($conn,$cmd);
+$sql_obj = mysqli_query($conn, $cmd);
 
-$total_rows=mysqli_num_rows($sql_obj);
+$total_rows = mysqli_num_rows($sql_obj);
 
 echo "<br>";
-$total_price=0;
+$total_price = 0;
 
 echo "<div class='d-flex'>";
 
 echo "<div class='w-75  d-flex flex-wrap justify-content-start '>";
-for($i=0;$i<$total_rows;$i++)
-{
-    $row=mysqli_fetch_assoc($sql_obj);
-        $pid=$row['pid'];
-        $name=$row['name'];
-        $price=$row['price'];
-        $details=$row['details'];
-        $imname=$row['imname'];
+for ($i = 0; $i < $total_rows; $i++) {
+    $row = mysqli_fetch_assoc($sql_obj);
+    $pid = $row['pid'];
+    $name = $row['name'];
+    $price = $row['price'];
+    $details = $row['details'];
+    $imname = $row['imname'];
 
-        echo "<div class='card mt-5' style='width:200px'>
-                <img class='card-img-top' src='../images/$imname' alt='Card image'>
+    echo "<div class='card mt-5' style='width:200px'>
+                <img class='card-img-top' src='../db_uploaded_images/$imname' alt='Card image'>
                 <div class='card-body'>
                     <h4 class='card-title'>$name  <span class='text-danger'>$price Rs </span></h4>
                     <p class='card-text'>$details</p>
@@ -63,10 +62,10 @@ for($i=0;$i<$total_rows;$i++)
                     </div>
                 </div>
             </div>";
-    
-    $total_price+=$row['price'];
 
-    
+    $total_price += $row['price'];
+
+
 }
 echo "</div>";
 
